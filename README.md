@@ -19,18 +19,18 @@ GITHUB_TOKEN={your token}
 ## 실행하기
 
 ```
-$ npm install && npm run start -- {owner} {repo} {issueNumber}
+$ go run main.go --owner={owner} --repo={repo} --issueNumber={issueNumber} --content={content}
 ```
 
 ex)
 ```
 // 모든 리액션 가져오기
-$ npm install && npm run start -- Microsoft vscode 164
+$ go run main.go --owner=Microsoft --repo=vscode --issueNumber=164
 ```
 
 ```
 // +1 리액션 가져오기
-$ npm install && npm run start -- Microsoft vscode 164 +1
+$ go run main.go --owner=Microsoft --repo=vscode --issueNumber=164 --content=+1
 ```
 
 ## 리액션 종류
