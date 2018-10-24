@@ -30,7 +30,6 @@ func fetchReactions(owner, repo string, issueNumber int, content string) []strin
 	_, body, errs := request.Get(url).
 		Set("Accept", "application/vnd.github.squirrel-girl-preview+json").
 		Set("Authorization", fmt.Sprintf("token %s", token)).
-		Param("content", content).
 		End()
 	if errs != nil {
 		panic(errs)
@@ -41,6 +40,9 @@ func fetchReactions(owner, repo string, issueNumber int, content string) []strin
 
 	var usernames []string
 	for _, reaction := range reactions {
+		if len(content) > 0 && reaction["content"].(string) != content {
+			continue
+		}
 		user, ok := reaction["user"].(map[string]interface{})
 		if ok {
 			login := user["login"]
